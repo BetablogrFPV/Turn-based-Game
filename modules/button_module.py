@@ -1,15 +1,32 @@
 """
-b1 = image_button(idle_image: pygame.Surface, pressed_image: pygame.Surface, pos: tuple (x|y), size: tuple (width|height), action: assigned function)
+---------- init ----------
 
-b1 = image_button(idle_image_1, pressed_image_1, (100|100), (20|30), test)
+b1 = image_button(idle_image: pygame.Surface, pressed_image: pygame.Surface, pos: tuple (x,y), size: tuple (width,height), action: assigned function)
+
+b1 = image_button(idle_image_1, pressed_image_1, (100,100), (20,30), test)
 --> button image gets sized to 20x30px
 
-b1 = image_button(idle_image_1, pressed_image_1, (100|100), (-1|30), test)
-b1 = image_button(idle_image_1, pressed_image_1, (100|100), (20|-1), test)
+b1 = image_button(idle_image_1, pressed_image_1, (100,100), (-1,30), test)
+b1 = image_button(idle_image_1, pressed_image_1, (100,100), (20,-1), test)
 --> the undefined dimension (width or height) ist automaticly scaled
 
-b1 = image_button(idle_image_1, pressed_image_1, (100|100), (-1|-1), test)
+b1 = image_button(idle_image_1, pressed_image_1, (100,100), (-1,-1), test)
 --> original size is used
+
+---------- usage ----------
+
+update the button in the loop:
+
+for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+        play_button.handle_event(event)
+
+---------- display ----------
+
+draw the button in the loop:
+
+b1.draw(screen)
 
 """
 
@@ -50,7 +67,6 @@ class image_button:
         screen.blit(self.image, self.rect)
 
     def handle_event(self, event):
-        # Maus gedrückt
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             if self.rect.collidepoint(event.pos):
                 x = event.pos[0] - self.rect.x
@@ -59,11 +75,9 @@ class image_button:
                 if alpha > 0:
                     self.image = self.pressed_image
                     self.pressed = True
-                    # --- Aktion sofort ausführen ---
                     if self.action:
                         self.action()
 
-        # Maus losgelassen
         elif event.type == pygame.MOUSEBUTTONUP and event.button == 1:
             if self.pressed:
                 self.image = self.idle_image
