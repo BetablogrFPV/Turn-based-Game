@@ -18,7 +18,8 @@ def on_play():
     print("Play Button gedrückt!")
 
 play_button = button_module.button_image(
-    spritesheet_module.get_tile("images/UI_images/ui_spritesheet.png", 0, 48, 16, 16),
+    idle_image=spritesheet_module.get_tile("images/UI_images/ui_spritesheet.png", 0, 3, 1, 1),
+    pressed_image=spritesheet_module.get_tile("images/UI_images/ui_spritesheet.png", 1, 3, 1, 1),
     pos=(300, 250),
     size=(-1, 100),
     action=on_play
