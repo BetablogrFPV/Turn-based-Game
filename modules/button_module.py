@@ -1,6 +1,6 @@
 import pygame
 
-class butten_image:
+class button_image:
     def __init__(self, image_path, pos, size=(-1, -1), action=None):
         original_image = pygame.image.load(image_path).convert_alpha()
         orig_w, orig_h = original_image.get_size()
@@ -21,9 +21,7 @@ class butten_image:
             new_w, new_h = target_w, target_h
 
         if (new_w, new_h) != (orig_w, orig_h):
-            self.image = pygame.transform.smoothscale(
-                original_image, (new_w, new_h)
-            )
+            self.image = pygame.transform.scale(original_image, (new_w, new_h))
         else:
             self.image = original_image
 

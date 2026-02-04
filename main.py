@@ -1,6 +1,10 @@
 import pygame
 import sys
-from modules.button_module import butten_image  # Hier importieren
+from modules import button_module
+
+import os
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
+
 
 pygame.init()
 WIDTH, HEIGHT = 800, 600
@@ -12,8 +16,8 @@ FPS = 60
 def on_play():
     print("Play Button gedrückt!")
 
-play_button = ImageButton(
-    "assets/button_play.png",
+play_button = button_module.button_image(
+    "images/UI_images/test.png",
     pos=(300, 250),
     size=(-1, 100),
     action=on_play
