@@ -1,6 +1,7 @@
 import pygame
 import sys
 from modules import button_module
+from modules import spritesheet_module
 
 import os
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
@@ -17,7 +18,7 @@ def on_play():
     print("Play Button gedrückt!")
 
 play_button = button_module.button_image(
-    "images/UI_images/test.png",
+    spritesheet_module.get_tile("images/UI_images/ui_spritesheet.png", 0, 24, 16, 16),
     pos=(300, 250),
     size=(-1, 100),
     action=on_play
