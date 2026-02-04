@@ -1,8 +1,21 @@
-import pygame
+#
+# b1 = image_button(idle_image: pygame.Surface, pressed_image: pygame.Surface, pos: tuple (x|y), size: tuple (width|height), action: assigned function)
+#
+# b1 = image_button(idle_image_1, pressed_image_1, (100|100), (20|30), test)
+# --> button image gets sized to 20x30px
+#
+# b1 = image_button(idle_image_1, pressed_image_1, (100|100), (-1|30), test)
+# b1 = image_button(idle_image_1, pressed_image_1, (100|100), (20|-1), test)
+# --> the undefined dimension (width or height) ist automaticly scaled
+#
+# b1 = image_button(idle_image_1, pressed_image_1, (100|100), (-1|-1), test)
+# --> original size is used
+#
+
 
 import pygame
 
-class button_image:
+class image_button:
     def __init__(self, idle_image: pygame.Surface, pressed_image: pygame.Surface, pos, size=(-1, -1), action=None):
 
         orig_w, orig_h = idle_image.get_size()
