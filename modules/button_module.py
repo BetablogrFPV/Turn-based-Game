@@ -37,6 +37,7 @@ class button_image:
         screen.blit(self.image, self.rect)
 
     def handle_event(self, event):
+        # Maus gedrückt
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             if self.rect.collidepoint(event.pos):
                 x = event.pos[0] - self.rect.x
@@ -45,15 +46,12 @@ class button_image:
                 if alpha > 0:
                     self.image = self.pressed_image
                     self.pressed = True
+                    # --- Aktion sofort ausführen ---
+                    if self.action:
+                        self.action()
 
+        # Maus losgelassen
         elif event.type == pygame.MOUSEBUTTONUP and event.button == 1:
             if self.pressed:
-                x, y = pygame.mouse.get_pos()
-                if self.rect.collidepoint((x, y)):
-                    rel_x = x - self.rect.x
-                    rel_y = y - self.rect.y
-                    alpha = self.image.get_at((rel_x, rel_y)).a
-                    if alpha > 0 and self.action:
-                        self.action()
                 self.image = self.idle_image
                 self.pressed = False

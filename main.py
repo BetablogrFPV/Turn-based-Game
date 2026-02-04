@@ -21,7 +21,7 @@ play_button = button_module.button_image(
     idle_image=spritesheet_module.get_tile("images/UI_images/ui_spritesheet.png", 0, 3, 1, 1),
     pressed_image=spritesheet_module.get_tile("images/UI_images/ui_spritesheet.png", 1, 3, 1, 1),
     pos=(300, 250),
-    size=(-1, 100),
+    size=(-1, 40),
     action=on_play
 )
 
