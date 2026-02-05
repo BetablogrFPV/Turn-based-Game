@@ -8,7 +8,7 @@ os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 
 pygame.init()
-WIDTH, HEIGHT = 800, 600
+WIDTH, HEIGHT = 1920, 1080
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Pygame Button Beispiel")
 clock = pygame.time.Clock()
@@ -20,10 +20,15 @@ def on_play():
 play_button = button_module.image_button(
     idle_image=spritesheet_module.get_tile("images/UI_images/ui_spritesheet.png", (0,3), (1,1)),
     pressed_image=spritesheet_module.get_tile("images/UI_images/ui_spritesheet.png",(1,3), (1,1)),
-    pos=(300, 250),
+    pos=(300, 630),
     size=(-1, 80),
     action=on_play
 )
+
+background = pygame.image.load("images/background_images/background_deafult.png")#bg load
+background = pygame.transform.scale(background, (1920, 1080))#bg scale
+
+
 
 running = True
 while running:
@@ -33,6 +38,8 @@ while running:
         play_button.handle_event(event)
 
     screen.fill((30, 30, 30))
+    screen.blit(background, (0, 0))#bg
+
 
     play_button.draw(screen)
 
