@@ -28,6 +28,11 @@ play_button = button_module.image_button(
 background = pygame.image.load("images/background_images/background_deafult.png")#bg load
 background = pygame.transform.scale(background, (1920, 1080))#bg scale
 
+heart_player = spritesheet_module.get_tile("images/ui_images/heart_spritesheet.png", (0,0), (5,2))
+heart_player = pygame.transform.scale(heart_player, (350, 140)) 
+
+heart_enemy = spritesheet_module.get_tile("images/ui_images/heart_spritesheet.png", (5,0), (5,2))
+heart_enemy = pygame.transform.scale(heart_enemy, (350, 140)) 
 
 
 running = True
@@ -42,6 +47,8 @@ while running:
 
 
     play_button.draw(screen)
+    screen.blit(heart_player, (30, 5))
+    screen.blit(heart_enemy, (1550, 5))
 
     pygame.display.flip()
     clock.tick(FPS)
