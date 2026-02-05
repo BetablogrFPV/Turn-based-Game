@@ -3,8 +3,9 @@ image1 = get_tile(image_path, pos: tuple (x,y), size: tuple (width,height))
 
 --> 1 unit is 16px in the spritesheet
 --> the top-left corner is (0|0)
+--> returns a pygame surface
 
-image_1 = get_tile("images/spritesheet.png",(2,1), (1,2))
+image_1 = get_tile("images/spritesheet.png", (2,1), (1,2))
 --> tile with the size 32x16px at the position 16x48px dimensioned at the top-left corner
 
     [tile arked with X in the following explanation-graphic]

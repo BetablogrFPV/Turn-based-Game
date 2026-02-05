@@ -9,7 +9,7 @@ os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 pygame.init()
 WIDTH, HEIGHT = 1920, 1080
-screen = pygame.display.set_mode((WIDTH, HEIGHT))
+screen =  pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
 pygame.display.set_caption("Pygame Button Beispiel")
 clock = pygame.time.Clock()
 FPS = 60
@@ -40,6 +40,10 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_ESCAPE:
+                running = False
+        
         play_button.handle_event(event)
 
     screen.fill((30, 30, 30))
