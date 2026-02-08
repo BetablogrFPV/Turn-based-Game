@@ -18,8 +18,8 @@ def on_play():
     print("Play Button gedrückt!")
 
 play_button = button_module.image_button(
-    idle_image=spritesheet_module.get_tile("images/UI_images/ui_spritesheet.png", (0,3), (1,1)),
-    pressed_image=spritesheet_module.get_tile("images/UI_images/ui_spritesheet.png",(1,3), (1,1)),
+    idle_image=spritesheet_module.get_tile("images/ui_images/ui_spritesheet.png", (0,3), (1,1)),
+    pressed_image=spritesheet_module.get_tile("images/ui_images/ui_spritesheet.png",(1,3), (1,1)),
     pos=(300, 630),
     size=(-1, 80),
     action=on_play
@@ -28,7 +28,7 @@ play_button = button_module.image_button(
 background = pygame.image.load("images/background_images/background_deafult.png")#bg load
 background = pygame.transform.scale(background, (1920, 1080))#bg scale
 
-heart_player = spritesheet_module.get_tile("images/ui_images/heart_spritesheet.png", (0,0), (5,2))
+heart_player = spritesheet_module.get_tile("images/ui_images/heart_spritesheet.png", (0,0), (5,2))#gibt aktuell einen error dass der file nicht existiert. kp warum
 heart_player = pygame.transform.scale(heart_player, (350, 140)) 
 
 heart_enemy = spritesheet_module.get_tile("images/ui_images/heart_spritesheet.png", (5,0), (5,2))
