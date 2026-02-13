@@ -9,8 +9,8 @@ os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 pygame.init()
 WIDTH, HEIGHT = 1920, 1080
-screen =  pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
-pygame.display.set_caption("Pygame Button Beispiel")
+screen = pygame.display.set_mode((1920, 1080), pygame.SCALED | pygame.FULLSCREEN)
+pygame.display.set_caption("turn based game")
 clock = pygame.time.Clock()
 FPS = 60
 
