@@ -1,17 +1,21 @@
 """
 ---------- init ----------
 
-b1 = image_button(idle_image: pygame.Surface, pressed_image: pygame.Surface, pos: tuple (x,y), size: tuple (width,height), action: assigned function)
+b1 = image_button(idle_image: pygame.Surface, pressed_image: pygame.Surface, pos: tuple (x,y), size: tuple (width,height), action: assigned function, timing: string)
 
-b1 = image_button(idle_image_1, pressed_image_1, (100,100), (20,30), test)
+b1 = image_button(idle_image_1, pressed_image_1, (100,100), (20,30), test, "on_press")
 --> button image gets sized to 20x30px
 
-b1 = image_button(idle_image_1, pressed_image_1, (100,100), (-1,30), test)
-b1 = image_button(idle_image_1, pressed_image_1, (100,100), (20,-1), test)
+b1 = image_button(idle_image_1, pressed_image_1, (100,100), (-1,30), test, "on_press")
+b1 = image_button(idle_image_1, pressed_image_1, (100,100), (20,-1), test, "on_press")
 --> the undefined dimension (width or height) ist automaticly scaled
 
-b1 = image_button(idle_image_1, pressed_image_1, (100,100), (-1,-1), test)
+b1 = image_button(idle_image_1, pressed_image_1, (100,100), (-1,-1), test, "on_press")
 --> original size is used
+
+"on_press" --> action is called directly
+"on_release" --> action is called on release
+"delayed" --> action is called 400ms delayed
 
 ---------- usage ----------
 
@@ -33,7 +37,8 @@ b1.draw(screen)
 import pygame
 
 class image_button:
-    def __init__(self, idle_image: pygame.Surface, pressed_image: pygame.Surface, pos, size=(-1, -1), action=None):
+    next_event_id = pygame.USEREVENT + 1
+    def __init__(self, idle_image: pygame.Surface, pressed_image: pygame.Surface, pos, size=(-1, -1), action=None, timing="on_press"):
 
         orig_w, orig_h = idle_image.get_size()
         target_w, target_h = size
@@ -61,7 +66,12 @@ class image_button:
         self.image = self.idle_image
         self.rect = self.image.get_rect(topleft=pos)
         self.action = action
+        self.timing = timing
         self.pressed = False
+
+        if timing == "delayed":
+            self.trigger_event = image_button.next_event_id
+            image_button.next_event_id += 1
 
     def draw(self, screen):
         screen.blit(self.image, self.rect)
@@ -75,10 +85,22 @@ class image_button:
                 if alpha > 0:
                     self.image = self.pressed_image
                     self.pressed = True
-                    if self.action:
+
+                    if self.action and self.timing == "on_press":
                         self.action()
+                    
 
         elif event.type == pygame.MOUSEBUTTONUP and event.button == 1:
             if self.pressed:
                 self.image = self.idle_image
                 self.pressed = False
+                
+                if self.action and self.timing == "on_release":
+                    self.action()
+
+                if self.action and self.timing == "delayed":
+                    pygame.time.set_timer(self.trigger_event, 400, loops=1)
+
+
+        elif self.timing == "delayed" and event.type == self.trigger_event:
+            self.action()
