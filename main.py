@@ -29,10 +29,10 @@ def start_game():
     current_screen = "selection_screen"
 
 play_button = button_module.image_button(
-    idle_image=spritesheet_module.get_tile("images/ui_images/button_spritesheet.png", (1,6), (1,1)),
-    pressed_image=spritesheet_module.get_tile("images/ui_images/button_spritesheet.png",(2,6), (1,1)),
-    pos=(810, 630),
-    size=(-1, 300),
+    idle_image=spritesheet_module.get_tile("images/ui_images/control_button_spritesheet.png", (1,2), (1,1)),
+    pressed_image=spritesheet_module.get_tile("images/ui_images/control_button_spritesheet.png",(2,2), (1,1)),
+    pos=(SCREEN_WIDTH/2+20, 630),
+    size=(100, -1),
     action=start_game,
     timing="delayed"
 )
@@ -42,10 +42,10 @@ def quit_game():
     running = False
 
 quit_button = button_module.image_button(
-    idle_image=spritesheet_module.get_tile("images/ui_images/button_spritesheet.png", (1,6), (1,1)),
-    pressed_image=spritesheet_module.get_tile("images/ui_images/button_spritesheet.png",(2,6), (1,1)),
-    pos=(810, 830),
-    size=(-1, 300),
+    idle_image=spritesheet_module.get_tile("images/ui_images/control_button_spritesheet.png", (1,1), (1,1)),
+    pressed_image=spritesheet_module.get_tile("images/ui_images/control_button_spritesheet.png",(2,1), (1,1)),
+    pos=(SCREEN_WIDTH/2-120, 630),
+    size=(100, -1),
     action=quit_game,
     timing="delayed"
 )
